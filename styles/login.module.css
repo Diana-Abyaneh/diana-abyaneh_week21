@@ -1,0 +1,85 @@
+.formContainer {
+  margin: 50px auto;
+  padding: 45px 0px;
+  width: 460px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border: 1px solid rgba(228, 228, 228, 1);
+  border-radius: 40px;
+  background-color: white;
+}
+
+.header h1 {
+  margin: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 31px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.head img {
+  width: 80px;
+  height: 80px;
+  align-self: center;
+}
+
+.head h3 {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.inputsContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: center;
+  width: 400px;
+}
+
+.inputsContainer input {
+  border: none;
+  background-color: rgba(242, 242, 242, 1);
+  border-radius: 15px;
+  padding: 10px;
+  width: 95%;
+  font-size: 16px;
+}
+
+.formContainer button {
+  background-color: rgba(85, 163, 240, 1);
+  font-weight: 600;
+  font-size: 20px;
+  width: 400px;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  align-self: center;
+  cursor: pointer;
+}
+
+.link {
+  padding: 0 40px;
+  text-align: right;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+  align-self: flex-start;
+}

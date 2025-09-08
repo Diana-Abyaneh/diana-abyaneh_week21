@@ -1,0 +1,77 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paginationArrow {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.paginationArrow:hover:not(:disabled) {
+  background-color: #d9d9d9;
+  transform: scale(1.1);
+}
+
+.paginationArrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginationPages {
+  display: flex;
+  gap: 8px;
+}
+
+.paginationCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.paginationCircle:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.paginationCircleActive {
+  background-color: rgba(85, 163, 240, 1);
+  color: white;
+  border-color: rgba(85, 163, 240, 1);
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .paginationArrow,
+  .paginationCircle {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}
