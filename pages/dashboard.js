@@ -9,6 +9,7 @@ import Pagination from "@/components/Pagination";
 import AddProductModal from "@/components/AddProductModal";
 import EditProductModal from "@/components/EditProductModal";
 import DeleteProductModal from "@/components/DeleteProductModal";
+import DeleteProductsModal from "@/components/DeleteBulkProductsModal";
 
 import Image from "next/image";
 import setting from "../assets/setting-3.svg";
@@ -17,6 +18,7 @@ import styles from "../styles/dashboard.module.css";
 function Dashboard() {
   const router = useRouter();
   const { query } = router;
+  const [selectedIds, setSelectedIds] = useState([]);
 
   const {
     products,
@@ -25,6 +27,7 @@ function Dashboard() {
     handleAdd,
     handleEdit,
     handleDelete,
+    handleBulkDelete,
     page,
     setPage,
     search,
@@ -36,6 +39,7 @@ function Dashboard() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [userName, setUserName] = useState("");
+  const [showBulkDeleteModal, setShowBulkDeleteModal] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -76,6 +80,14 @@ function Dashboard() {
     setShowDeleteModal(true);
   };
 
+  const selectAllHandler = () => {
+    if (selectedIds.length === products.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(products.map((p) => p.id));
+    }
+  };
+
   return (
     <div className={styles.container}>
       <SearchBar
@@ -94,16 +106,31 @@ function Dashboard() {
           <Image src={setting} alt="setting icon" />
           <h3>مدیریت کالا</h3>
         </span>
-        <button
-          className={styles.addProductBtn}
-          onClick={() => setShowAddModal(true)}
-        >
-          افزودن محصول
-        </button>
+        <div className={styles.btnContainer}>
+          <button onClick={selectAllHandler}>
+            {selectedIds.length === products.length
+              ? "لغو انتخاب همه"
+              : "انتخاب همه"}
+          </button>
+          <button
+            disabled={selectedIds.length === 0}
+            onClick={() => setShowBulkDeleteModal(true)}
+          >
+            {`حذف گروهی (${selectedIds.length})`}
+          </button>
+          <button
+            className={styles.addProductBtn}
+            onClick={() => setShowAddModal(true)}
+          >
+            افزودن محصول
+          </button>
+        </div>
       </div>
 
       <ProductsTable
         products={products}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
         onEdit={openEditModal}
         onDelete={openDeleteModal}
       />
@@ -112,9 +139,9 @@ function Dashboard() {
         totalPages={totalPages}
         currentPage={page}
         onPageChange={(newPage) => {
-            setPage(newPage);
-            fetchProducts({ searchParam: search, pageParam: newPage });
-            updateQuery(search, newPage);
+          setPage(newPage);
+          fetchProducts({ searchParam: search, pageParam: newPage });
+          updateQuery(search, newPage);
         }}
       />
 
@@ -155,6 +182,18 @@ function Dashboard() {
             await handleDelete(id);
             setShowDeleteModal(false);
             setSelectedProduct(null);
+          }}
+        />
+      )}
+
+      {selectedIds && (
+        <DeleteProductsModal
+          isOpen={showBulkDeleteModal}
+          count={selectedIds.length}
+          onClose={() => setShowBulkDeleteModal(false)}
+          onConfirm={async () => {
+            await handleBulkDelete(selectedIds, () => setSelectedIds([]));
+            setShowBulkDeleteModal(false);
           }}
         />
       )}
