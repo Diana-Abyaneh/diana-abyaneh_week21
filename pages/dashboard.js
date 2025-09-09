@@ -52,7 +52,6 @@ function Dashboard() {
     const pageParam = parseInt(query.page || "1", 10);
     setSearch(q);
     setPage(pageParam);
-    fetchProducts({ searchParam: q, pageParam });
   }, [query]);
 
   const updateQuery = (q, p) => {
@@ -107,12 +106,13 @@ function Dashboard() {
           <h3>مدیریت کالا</h3>
         </span>
         <div className={styles.btnContainer}>
-          <button onClick={selectAllHandler}>
+          <button className={styles.selectAll} onClick={selectAllHandler}>
             {selectedIds.length === products.length
               ? "لغو انتخاب همه"
               : "انتخاب همه"}
           </button>
           <button
+            className={selectedIds.length > 0 ? styles.deleteAll : styles.disabled}
             disabled={selectedIds.length === 0}
             onClick={() => setShowBulkDeleteModal(true)}
           >
