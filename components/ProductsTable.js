@@ -15,13 +15,13 @@ function ProductsTable({
   }
 
   const selectHandler = (event) => {
-    const id = event.target.id;
+    const id = event.target.value;
     if (event.target.checked) {
       setSelectedIds((prev) => [...prev, id]);
-    } else
+    } else {
       setSelectedIds((prev) => prev.filter((selectedId) => selectedId !== id));
+    }
   };
-
 
   return (
     <div className={styles.tableContainer}>
@@ -39,12 +39,16 @@ function ProductsTable({
         <tbody>
           {products.map((p) => (
             <tr key={p.id}>
-              <input
-                type="checkbox"
-                id={p.id}
-                checked={selectedIds.includes(p.id)}
-                onChange={selectHandler}
-              />
+              <td>
+                <div className={styles.checkboxWrapper13}>
+                  <input
+                    type="checkbox"
+                    value={p.id}
+                    checked={selectedIds.includes(p.id)}
+                    onChange={selectHandler}
+                  />
+                </div>
+              </td>
               <td>{p.name}</td>
               <td>{p.quantity}</td>
               <td>{(p.price * 1000).toLocaleString()} تومان</td>
