@@ -83,3 +83,47 @@
   font-size: 15px;
   align-self: flex-start;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .formContainer {
+    width: 400px;
+    padding: 40px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .formContainer {
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px 0;
+  }
+  .inputsContainer {
+    width: 90%;
+  }
+  .formContainer button {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header h1 {
+    font-size: 24px;
+    margin: 30px 20px;
+  }
+  .head h3 {
+    font-size: 20px;
+  }
+  .inputsContainer input {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .formContainer button {
+    font-size: 18px;
+    padding: 8px;
+  }
+  .link {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+}

@@ -49,8 +49,7 @@
   .checkboxWrapper13 input[type="checkbox"]:disabled + label {
     cursor: not-allowed;
   }
-  .checkboxWrapper13
-    input[type="checkbox"]:hover:not(:checked):not(:disabled) {
+  .checkboxWrapper13 input[type="checkbox"]:hover:not(:checked):not(:disabled) {
     --bc: var(--border-hover);
   }
   .checkboxWrapper13 input[type="checkbox"]:focus {
@@ -141,8 +140,7 @@
   width: 20px;
 }
 
-.table
-  td {
+.table td {
   padding: 20px;
   text-align: right;
   font-size: 14px;
@@ -177,7 +175,8 @@
   border: 1px solid #e4e4e4;
 }
 
-@media (max-width: 768px) {
+
+@media screen and (max-width: 768px) {
   .tableContainer {
     border-radius: 16px;
   }

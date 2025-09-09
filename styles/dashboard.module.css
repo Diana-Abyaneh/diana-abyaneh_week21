@@ -112,7 +112,7 @@
   border: 1px solid #e4e4e4;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
     margin: 20px;
   }

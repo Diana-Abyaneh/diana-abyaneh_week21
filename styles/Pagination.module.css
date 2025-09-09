@@ -62,16 +62,17 @@
   border-color: rgba(85, 163, 240, 1);
 }
 
-@media (max-width: 768px) {
-  .pagination {
-    flex-direction: column;
-    gap: 12px;
-  }
 
-  .paginationArrow,
-  .paginationCircle {
-    width: 36px;
-    height: 36px;
-    font-size: 13px;
-  }
+@media screen and (max-width: 768px) {
+.pagination {
+flex-direction: column;
+gap: 12px;
+}
+
+.paginationArrow,
+.paginationCircle {
+width: 36px;
+height: 36px;
+font-size: 13px;
+}
 }

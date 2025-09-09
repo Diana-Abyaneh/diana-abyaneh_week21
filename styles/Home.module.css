@@ -32,3 +32,34 @@
 .container a {
   color: white;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .container {
+    margin: 150px 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 100px 50px;
+    gap: 20px;
+  }
+
+  .btnContainer {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 50px 20px;
+    padding: 20px;
+  }
+
+  .btnContainer {
+    margin: 20px 0;
+  }
+}
