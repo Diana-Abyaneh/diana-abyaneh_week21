@@ -1,5 +1,6 @@
 import styles from "../styles/confirmModal.module.css";
 import close from "../assets/Close.svg";
+import Image from "next/image";
 
 function DeleteProductModal({ isOpen, onClose, onConfirm, product }) {
   if (!isOpen) return null;
@@ -26,7 +27,7 @@ function DeleteProductModal({ isOpen, onClose, onConfirm, product }) {
         </div>
 
         <div className={styles.deleteModalBody}>
-            <img src={close} alt="close icon" />
+            <Image src={close} alt="close icon" />
           <p>آیا از حذف محصول <strong>"{product?.name}"</strong> اطمینان دارید؟</p>
         </div>
 
