@@ -3,16 +3,32 @@ import editVector from "../assets/edit.svg";
 import deleteVector from "../assets/trash.svg";
 import styles from "../styles/ProductsTable.module.css";
 
-function ProductsTable({ products, onEdit, onDelete }) {
+function ProductsTable({
+  products,
+  onEdit,
+  onDelete,
+  selectedIds,
+  setSelectedIds,
+}) {
   if (!products.length) {
     return <div className={styles.emptyState}>هیچ محصولی یافت نشد</div>;
   }
+
+  const selectHandler = (event) => {
+    const id = event.target.id;
+    if (event.target.checked) {
+      setSelectedIds((prev) => [...prev, id]);
+    } else
+      setSelectedIds((prev) => prev.filter((selectedId) => selectedId !== id));
+  };
+
 
   return (
     <div className={styles.tableContainer}>
       <table className={styles.table}>
         <thead>
           <tr>
+            <th />
             <th>نام کالا</th>
             <th>موجودی</th>
             <th>قیمت</th>
@@ -23,6 +39,12 @@ function ProductsTable({ products, onEdit, onDelete }) {
         <tbody>
           {products.map((p) => (
             <tr key={p.id}>
+              <input
+                type="checkbox"
+                id={p.id}
+                checked={selectedIds.includes(p.id)}
+                onChange={selectHandler}
+              />
               <td>{p.name}</td>
               <td>{p.quantity}</td>
               <td>{(p.price * 1000).toLocaleString()} تومان</td>
@@ -31,7 +53,10 @@ function ProductsTable({ products, onEdit, onDelete }) {
                 <button className={styles.actionBtn} onClick={() => onEdit(p)}>
                   <Image src={editVector} alt="ویرایش" />
                 </button>
-                <button className={styles.actionBtn} onClick={() => onDelete(p)}>
+                <button
+                  className={styles.actionBtn}
+                  onClick={() => onDelete(p)}
+                >
                   <Image src={deleteVector} alt="حذف" />
                 </button>
               </td>
