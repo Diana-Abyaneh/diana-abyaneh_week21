@@ -1,4 +1,5 @@
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -21,17 +22,16 @@ function Login() {
   const onSubmit = async (data) => {
     try {
       const result = await loginUser(data.username, data.password);
-
       localStorage.setItem("token", result.token);
 
       const decoded = jwtDecode(result.token);
       localStorage.setItem("user", decoded.username);
 
-      alert("ورود با موفقیت انجام شد!");
+      toast.success("ورود با موفقیت انجام شد!");
       router.push("/dashboard");
     } catch (error) {
       console.error("Error:", error);
-      alert("خطا در ورود. دوباره تلاش کنید.");
+      toast.error("خطا در ورود. دوباره تلاش کنید.");
     }
   };
 

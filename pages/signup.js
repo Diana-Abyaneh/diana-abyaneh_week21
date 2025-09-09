@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,14 +22,14 @@ function Signup() {
   const onSubmit = async (data) => {
     try {
       await registerUser(data.username, data.password);
-      alert("ثبت نام با موفقیت انجام شد!");
+      toast.success("ثبت نام با موفقیت انجام شد!");
       router.push("/login");
     } catch (error) {
       console.error("Error:", error);
       if (error.message?.includes("exists")) {
-        alert("نام کاربری از قبل وجود دارد.");
+        toast.error("نام کاربری از قبل وجود دارد.");
       } else {
-        alert("خطا در ثبت نام. دوباره تلاش کنید.");
+        toast.error("خطا در ثبت نام. دوباره تلاش کنید.");
       }
     }
   };
