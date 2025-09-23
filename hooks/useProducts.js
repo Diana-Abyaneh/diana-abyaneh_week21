@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getProducts } from "../services/products";
+import { getProducts } from "../services/productsAdmin";
 import { addProduct } from "../services/addProducts";
 import { editProduct } from "../services/editProduct";
 import { deleteProduct, deleteProducts } from "../services/deleteProduct";
@@ -18,7 +18,11 @@ export function useProducts() {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
-  const fetchProducts = async ({ searchParam = search, pageParam = page, limit = 10 } = {}) => {
+  const fetchProducts = async ({
+    searchParam = search,
+    pageParam = page,
+    limit = 10,
+  } = {}) => {
     try {
       setLoading(true);
       setError(null);
@@ -51,7 +55,9 @@ export function useProducts() {
       }
     } catch (err) {
       console.error("Fetch products error:", err);
-      setError(err.response?.data?.message || err.message || "خطا در دریافت محصولات");
+      setError(
+        err.response?.data?.message || err.message || "خطا در دریافت محصولات"
+      );
     } finally {
       setLoading(false);
     }
@@ -98,7 +104,8 @@ export function useProducts() {
       await deleteProducts(ids);
       console.log("deleted:", ids);
 
-      const newPage = products.length === ids.length && page > 1 ? page - 1 : page;
+      const newPage =
+        products.length === ids.length && page > 1 ? page - 1 : page;
       setPage(newPage);
       syncPageWithUrl(newPage);
 
